@@ -81,10 +81,8 @@ GdkPixbuf *img_on, *img_off, *img_busy;
 GdkPixbuf *icon_on, *icon_off;
 
 #ifdef HAVE_LIBLO
-int osc_handler(const char *path, const char *types, lo_arg **argv, int argc,
-		lo_message msg, void *user_data);
-int osc_handler_nox(const char *path, const char *types, lo_arg **argv,
-		int argc, lo_message msg, void *user_data);
+int osc_handler(const char *path, const char *types, lo_arg **argv, int argc, lo_message msg, void *user_data);
+int osc_handler_nox(const char *path, const char *types, lo_arg **argv, int argc, lo_message msg, void *user_data);
 char *osc_port = DEFAULT_OSC_PORT;
 #endif
 
@@ -181,8 +179,7 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "\t-o\tspecify the OSC port timemachine will listen on\n");
 #endif
         fprintf(stderr, "\n");
-        fprintf(stderr, "\tchannels must be in the range 1-8, default %d\n",
-                DEFAULT_NUM_PORTS);
+        fprintf(stderr, "\tchannels must be in the range 1-8, default %d\n", DEFAULT_NUM_PORTS);
         fprintf(stderr, "\tjack-name, default \"%s\"\n", DEFAULT_CLIENT_NAME);
         fprintf(stderr, "\tfile-prefix, default \"%s\"\n", DEFAULT_PREFIX);
         fprintf(stderr, "\tbuffer-length, default %d secs\n", DEFAULT_BUF_LENGTH);
