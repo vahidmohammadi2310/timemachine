@@ -67,8 +67,8 @@ int process(jack_nframes_t nframes, void *arg) {
     }
 
     in = (jack_default_audio_sample_t*) {
-      jack_port_get_buffer(ports[port], nframes);
-    }
+      jack_port_get_buffer(ports[port], nframes)
+    };
 
     if (!in) {
       fprintf(stderr, "bad buffer!\n");

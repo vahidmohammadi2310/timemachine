@@ -29,6 +29,7 @@
 static void gtk_meter_class_init               (GtkMeterClass *klass);
 static void gtk_meter_init                     (GtkMeter *meter);
 static void gtk_meter_destroy                  (GtkObject *object);
+static void gtk_meter_realize                  (GtkWidget *widget);
 static void gtk_meter_size_request             (GtkWidget *widget, GtkRequisition *requisition);
 static void gtk_meter_size_allocate            (GtkWidget *widget, GtkAllocation *allocation);
 static gint gtk_meter_expose                   (GtkWidget  *widget, GdkEventExpose   *event);
@@ -64,6 +65,7 @@ gtk_meter_get_type () {
 }
 
 static void gtk_meter_class_init (GtkMeterClass *class) {
+
   GtkObjectClass *object_class;
   GtkWidgetClass *widget_class;
 
