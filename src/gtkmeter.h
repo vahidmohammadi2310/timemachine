@@ -28,78 +28,74 @@ extern "C" {
 #endif /* __cplusplus */
 
 
-#define GTK_METER(obj)          GTK_CHECK_CAST (obj, gtk_meter_get_type (), GtkMeter)
-#define GTK_METER_CLASS(klass)  GTK_CHECK_CLASS_CAST (klass, gtk_meter_get_type (), GtkMeterClass)
-#define GTK_IS_METER(obj)       GTK_CHECK_TYPE (obj, gtk_meter_get_type ())
+  #define GTK_METER(obj)          GTK_CHECK_CAST (obj, gtk_meter_get_type (), GtkMeter)
+  #define GTK_METER_CLASS(klass)  GTK_CHECK_CLASS_CAST (klass, gtk_meter_get_type (), GtkMeterClass)
+  #define GTK_IS_METER(obj)       GTK_CHECK_TYPE (obj, gtk_meter_get_type ())
 
-#define GTK_METER_UP    0
-#define GTK_METER_DOWN  1
-#define GTK_METER_LEFT  2
-#define GTK_METER_RIGHT 3
+  #define GTK_METER_UP    0
+  #define GTK_METER_DOWN  1
+  #define GTK_METER_LEFT  2
+  #define GTK_METER_RIGHT 3
 
-typedef struct _GtkMeter        GtkMeter;
-typedef struct _GtkMeterClass   GtkMeterClass;
+  typedef struct _GtkMeter        GtkMeter;
+  typedef struct _GtkMeterClass   GtkMeterClass;
 
-struct _GtkMeter
-{
-  GtkWidget widget;
+  struct _GtkMeter {
+    GtkWidget widget;
 
-  /* update policy (GTK_UPDATE_[CONTINUOUS/DELAYED/DISCONTINUOUS]) */
-  guint direction : 2;
+    /* update policy (GTK_UPDATE_[CONTINUOUS/DELAYED/DISCONTINUOUS]) */
+    guint direction : 2;
 
-  /* Button currently pressed or 0 if none */
-  guint8 button;
+    /* Button currently pressed or 0 if none */
+    guint8 button;
 
-  /* Amber dB and deflection points */
-  gfloat amber_level;
-  gfloat amber_frac;
+    /* Amber dB and deflection points */
+    gfloat amber_level;
+    gfloat amber_frac;
 
-  /* Deflection limits */
-  gfloat iec_lower;
-  gfloat iec_upper;
+    /* Deflection limits */
+    gfloat iec_lower;
+    gfloat iec_upper;
 
-  /* Peak deflection */
-  gfloat peak;
+    /* Peak deflection */
+    gfloat peak;
 
-  /* ID of update timer, or 0 if none */
-  guint32 timer;
+    /* ID of update timer, or 0 if none */
+    guint32 timer;
 
-  /* Old values from adjustment stored so we know when something changes */
-  gfloat old_value;
-  gfloat old_lower;
-  gfloat old_upper;
+    /* Old values from adjustment stored so we know when something changes */
+    gfloat old_value;
+    gfloat old_lower;
+    gfloat old_upper;
 
-  GdkGC *green_gc;
-  GdkGC *amber_gc;
-  GdkGC *red_gc;
-  GdkGC *peak_gc;
+    GdkGC *green_gc;
+    GdkGC *amber_gc;
+    GdkGC *red_gc;
+    GdkGC *peak_gc;
 
-  /* The adjustment object that stores the data for this meter */
-  GtkAdjustment *adjustment;
-};
+    /* The adjustment object that stores the data for this meter */
+    GtkAdjustment *adjustment;
+  };
 
-struct _GtkMeterClass
-{
-  GtkWidgetClass parent_class;
-};
+  struct _GtkMeterClass {
+    GtkWidgetClass parent_class;
+  };
 
 
-GtkWidget*     gtk_meter_new                    (GtkAdjustment *adjustment,
-						 gint direction);
+  GtkWidget*     gtk_meter_new                    (GtkAdjustment *adjustment, gint direction);
 
-guint          gtk_meter_get_type               (void);
-GtkAdjustment* gtk_meter_get_adjustment         (GtkMeter     *meter);
+  guint          gtk_meter_get_type               (void);
+  GtkAdjustment* gtk_meter_get_adjustment         (GtkMeter *meter);
 
-void           gtk_meter_set_adjustment         (GtkMeter     *meter,
-						 GtkAdjustment *adjustment);
+  void           gtk_meter_set_adjustment         (GtkMeter *meter, GtkAdjustment *adjustment);
 
-void	       gtk_meter_reset_peak		(GtkMeter     *meter);
+  void	         gtk_meter_reset_peak		          (GtkMeter *meter);
 
-void           gtk_meter_set_warn_point         (GtkMeter *meter,
-						 gfloat pt);
+  void           gtk_meter_set_warn_point         (GtkMeter *meter, gfloat pt);
 
 #ifdef __cplusplus
 }
+
 #endif /* __cplusplus */
 
 

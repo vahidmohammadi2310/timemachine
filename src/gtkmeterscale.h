@@ -28,46 +28,42 @@ extern "C" {
 #endif /* __cplusplus */
 
 
-#define GTK_METERSCALE(obj)          GTK_CHECK_CAST (obj, gtk_meterscale_get_type (), GtkMeterScale)
-#define GTK_METERSCALE_CLASS(klass)  GTK_CHECK_CLASS_CAST (klass, gtk_meterscale_get_type (), GtkMeterScaleClass)
-#define GTK_IS_METERSCALE(obj)       GTK_CHECK_TYPE (obj, gtk_meterscale_get_type ())
+  #define GTK_METERSCALE(obj)          GTK_CHECK_CAST (obj, gtk_meterscale_get_type (), GtkMeterScale)
+  #define GTK_METERSCALE_CLASS(klass)  GTK_CHECK_CLASS_CAST (klass, gtk_meterscale_get_type (), GtkMeterScaleClass)
+  #define GTK_IS_METERSCALE(obj)       GTK_CHECK_TYPE (obj, gtk_meterscale_get_type ())
 
-#define GTK_METERSCALE_LEFT    1
-#define GTK_METERSCALE_RIGHT   2
-#define GTK_METERSCALE_TOP     4
-#define GTK_METERSCALE_BOTTOM  8
+  #define GTK_METERSCALE_LEFT    1
+  #define GTK_METERSCALE_RIGHT   2
+  #define GTK_METERSCALE_TOP     4
+  #define GTK_METERSCALE_BOTTOM  8
 
-typedef struct _GtkMeterScale        GtkMeterScale;
-typedef struct _GtkMeterScaleClass   GtkMeterScaleClass;
+  typedef struct _GtkMeterScale        GtkMeterScale;
+  typedef struct _GtkMeterScaleClass   GtkMeterScaleClass;
 
-struct _GtkMeterScale
-{
-  GtkWidget widget;
+  struct _GtkMeterScale {
+    GtkWidget widget;
 
-  /* the sides scales are marked on */
-  guint direction;
+    /* the sides scales are marked on */
+    guint direction;
 
-  /* Deflection limits */
-  gfloat lower;
-  gfloat upper;
-  gfloat iec_lower;
-  gfloat iec_upper;
+    /* Deflection limits */
+    gfloat lower;
+    gfloat upper;
+    gfloat iec_lower;
+    gfloat iec_upper;
 
-  int min_width;
-  int min_height;
-};
+    int min_width;
+    int min_height;
+  };
 
-struct _GtkMeterScaleClass
-{
-  GtkWidgetClass parent_class;
-};
+  struct _GtkMeterScaleClass {
+    GtkWidgetClass parent_class;
+  };
 
 
-GtkWidget*     gtk_meterscale_new               (gint direction,
-						 gfloat min,
-						 gfloat max);
+  GtkWidget* gtk_meterscale_new (gint direction, gfloat min, gfloat max);
 
-guint          gtk_meterscale_get_type          (void);
+  guint gtk_meterscale_get_type (void);
 
 #ifdef __cplusplus
 }

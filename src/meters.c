@@ -28,25 +28,24 @@
 
 static GtkAdjustment *meter_adj[MAX_PORTS];
 
-void bind_meters()
-{
+void bind_meters() {
     unsigned int i;
 
     for (i=0; i<num_ports; i++) {
-	char name[32];
-	GtkMeter *meter;
+        char name[32];
+        GtkMeter *meter;
 
-	snprintf(name, 31, "meter%d", i);
-	meter = GTK_METER(lookup_widget(main_window, name));
-	if (!meter) {
-	    fprintf(stderr, "Cant find meter %d at %s:%d\n", i, __FILE__, __LINE__);
-	    exit(1);
-	}
-	meter_adj[i] = gtk_meter_get_adjustment(meter);
-	if (!meter_adj[i]) {
-	    fprintf(stderr, "Cant get adjustment %d at %s:%d\n", i, __FILE__, __LINE__);
-	    exit(1);
-	}
+        snprintf(name, 31, "meter%d", i);
+        meter = GTK_METER(lookup_widget(main_window, name));
+        if (!meter) {
+            fprintf(stderr, "Cant find meter %d at %s:%d\n", i, __FILE__, __LINE__);
+            exit(1);
+        }
+        meter_adj[i] = gtk_meter_get_adjustment(meter);
+        if (!meter_adj[i]) {
+            fprintf(stderr, "Cant get adjustment %d at %s:%d\n", i, __FILE__, __LINE__);
+            exit(1);
+        }
     }
 }
 
