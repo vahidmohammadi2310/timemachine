@@ -1,3 +1,10 @@
+Currently a work in progress to remove optional dependencies and make commandline only.
+This should not be picked up/installed without understanding this caveat.
+
+thanks.
+
+----------
+
 I used to always keep a minidisc recorder in my studio running in a mode where
 when you pressed record it wrote the last 10 seconds of audio to the disk and
 then caught up to realtime and kept recording. The recorder died and haven't
