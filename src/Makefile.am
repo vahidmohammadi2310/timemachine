@@ -7,14 +7,6 @@ INCLUDES = \
 
 bin_PROGRAMS = timemachine
 
-timemachine_SOURCES = \
-	main.c main.h \
-	support.c support.h \
-	interface.c interface.h \
-	callbacks.c callbacks.h \
-	gtkmeter.c gtkmeter.h \
-	gtkmeterscale.c gtkmeterscale.h \
-	meters.c meters.h \
-	threads.c threads.h 
+timemachine_SOURCES = callbacks.c  main.c  main.h  meters.h  threads.c  threads.h
 
 timemachine_LDADD = @PACKAGE_LIBS@

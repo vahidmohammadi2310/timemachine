@@ -23,12 +23,9 @@
 #include <sndfile.h>
 #include <jack/jack.h>
 #include <gtk/gtk.h>
-
 #include "config.h"
-#include "support.h"
 #include "main.h"
 #include "threads.h"
-#include "meters.h"
 
 #define BUF_SIZE 4096
 
@@ -153,21 +150,20 @@ int writer_thread(void *d) {
     return 0;
   }
 
-  /* Find the ISO 8601 date string for the time of the start of the
-   * buffer */
+  /* Find the ISO 8601 date string for the time of the start of the buffer */
   time(&t);
   t -= pre_time;
   parts = localtime(&t);
   if (safe_filename) {
     filename = g_strdup_printf("%s%04d-%02d-%02dT%02d-%02d-%02d.%s",
-            prefix,
-            parts->tm_year + 1900, parts->tm_mon + 1, parts->tm_mday,
-            parts->tm_hour, parts->tm_min, parts->tm_sec, format_name);
+        prefix,
+        parts->tm_year + 1900, parts->tm_mon + 1, parts->tm_mday,
+        parts->tm_hour, parts->tm_min, parts->tm_sec, format_name);
   } else {
     filename = g_strdup_printf("%s%04d-%02d-%02dT%02d:%02d:%02d.%s",
-            prefix,
-            parts->tm_year + 1900, parts->tm_mon + 1, parts->tm_mday,
-            parts->tm_hour, parts->tm_min, parts->tm_sec, format_name);
+        prefix,
+        parts->tm_year + 1900, parts->tm_mon + 1, parts->tm_mday,
+        parts->tm_hour, parts->tm_min, parts->tm_sec, format_name);
   }
 
   /* Open the output file */
@@ -289,33 +285,3 @@ void recording_quit()
   recording_stop();
 }
 
-gboolean meter_tick(gpointer user_data)
-{
-  float data[MAX_PORTS];
-  unsigned int i;
-
-  if (need_ui_sync) {
-    GtkWidget *img = lookup_widget(main_window, "toggle_image");
-
-    if (recording) {
-      gtk_image_set_from_pixbuf(GTK_IMAGE(img), img_on);
-      gtk_window_set_icon(GTK_WINDOW(main_window), icon_on);
-    } else {
-      gtk_image_set_from_pixbuf(GTK_IMAGE(img), img_off);
-      gtk_window_set_icon(GTK_WINDOW(main_window), icon_off);
-    }
-    gtk_widget_set_sensitive(img, TRUE);
-
-    need_ui_sync = 0;
-  }
-
-  for (i = 0; i < MAX_PORTS; i++) {
-    data[i] = peak[i];
-    peak[i] = peak[i] - 0.1f < 0.0f ? 0.0f : peak[i] - 0.1f;
-  }
-  update_meters(data);
-
-  return TRUE;
-}
-
-/* vi:set ts=8 sts=4 sw=4: */

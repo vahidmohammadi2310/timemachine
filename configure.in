@@ -82,6 +82,5 @@ AC_SUBST(PACKAGE_LIBS)
 AC_OUTPUT([
 Makefile
 src/Makefile
-pixmaps/Makefile
 ])
 

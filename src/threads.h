@@ -1,7 +1,6 @@
 #ifndef PROCESS_H
 #define PROCESS_H
 
-#include <gtk/gtk.h>
 #include <jack/jack.h>
 
 /* size of disk buffer, must be power of two */
@@ -16,8 +15,6 @@ int writer_thread(void *d);
 void recording_start();
 void recording_stop();
 void recording_quit();
-
-gboolean meter_tick(gpointer data);
 
 extern volatile int recording_done;
 
